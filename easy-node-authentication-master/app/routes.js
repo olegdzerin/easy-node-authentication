@@ -1,4 +1,5 @@
 module.exports = function(app, passport) {
+    
 
 // normal routes ===============================================================
 
@@ -7,7 +8,7 @@ module.exports = function(app, passport) {
         res.render('index.ejs');
     });
 
-    // PROFILE SECTION =========================
+    // PROFILE SECTION ==
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user : req.user

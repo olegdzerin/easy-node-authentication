@@ -4,7 +4,7 @@ const express = require('express'),
   session = require('express-session'),
   path = require('path'),
   cookieParser = require('cookie-parser');
-  const routes = require('./app/routes/mainRoutes');
+  //routes = require('./app/routes/mainRoutes');
 
   app.set('view engine', 'ejs'); 
   app.use(cookieParser('secret key'));
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-//app.use();
+
 
 app.use(
   session({
@@ -33,4 +33,4 @@ app.use(
 
  require('./app/routes/mainRoutes')(app);
  
- module.exports = app;
+  module.exports = app;

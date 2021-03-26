@@ -1,28 +1,15 @@
-const { onErrorResumeNext } = require('rxjs');
+const { onErrorResumeNext } = require('rxjs'),
+      {requireAuth, requireAuthByToken} = require('../middleware');
 
 module.exports = function(app){
 const authRouters = require('./authRouters');
 
-const requireAuth = (req, res, next) => {
-  if(!req.session.email) {
-    res.sendStatus(404)
-    // res.locals.user = req.session.email;
-    // res.render('about');
-  }
-    next();
-}
+
       
       app.use(authRouters)      
-      app.get('/about', requireAuth, (req,res) => {
-        res.render('about');
+      app.get('/about', requireAuth, requireAuthByToken, (req,res) => {
+        res.render('about', {user: req.session.email});
       }
-        // if(req.session.email) {
-        //   res.locals.user = req.session.email;
-        //   res.render('about');
-        // }else{
-        //   res.sendStatus(404)
-          
-        // }
       );
       
       
